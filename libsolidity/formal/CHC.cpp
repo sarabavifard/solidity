@@ -219,9 +219,23 @@ bool CHC::visit(FunctionDefinition const& _function)
 	if (!m_currentContract)
 		return false;
 
-	if (!_function.isImplemented())
+	if (
+		!_function.isImplemented() ||
+		abstractAsNondet(_function)
+	)
 	{
-		addRule(summary(_function), "summary_function_" + to_string(_function.id()));
+		smtutil::Expression conj(true);
+		if (
+			_function.stateMutability() == StateMutability::Pure ||
+			_function.stateMutability() == StateMutability::View
+		)
+			// TODO extract this loop into a function.
+			// Two other places could use that function.
+			for (auto var: stateVariablesIncludingInheritedAndPrivate(_function))
+				conj = conj && currentValue(*var) == m_context.variable(*var)->valueAtIndex(0);
+
+		conj = conj && errorFlag().currentValue() == 0;
+		addRule(smtutil::Expression::implies(conj, summary(_function)), "summary_function_" + to_string(_function.id()));
 		return false;
 	}
 
@@ -262,7 +276,10 @@ void CHC::endVisit(FunctionDefinition const& _function)
 	if (!m_currentContract)
 		return;
 
-	if (!_function.isImplemented())
+	if (
+		!_function.isImplemented() ||
+		abstractAsNondet(_function)
+	)
 		return;
 
 	solAssert(m_currentFunction && m_currentContract, "");
@@ -999,6 +1016,37 @@ set<unsigned> CHC::transactionVerificationTargetsIds(ASTNode const* _txRoot)
 			_addChild({{}, called});
 	});
 	return verificationTargetsIds;
+}
+
+optional<CHC::CHCNatspecOption> CHC::natspecOptionFromString(string const& _option)
+{
+	static map<string, CHCNatspecOption> options{
+		{"abstract-function-nondet", CHCNatspecOption::AbstractFunctionNondet}
+	};
+	if (options.count(_option))
+		return options.at(_option);
+	return {};
+}
+
+set<CHC::CHCNatspecOption> CHC::smtNatspecTags(FunctionDefinition const& _function)
+{
+	set<CHC::CHCNatspecOption> options;
+	auto const& tags = _function.annotation().docTags;
+	string smtStr = "custom:smtchecker";
+	for (auto it = tags.find(smtStr); it != tags.end() && it->first == smtStr; ++it)
+	{
+		string const& content = it->second.content;
+		if (auto option = natspecOptionFromString(content))
+			options.insert(*option);
+		else
+			m_errorReporter.warning(3130_error, _function.location(), "Unknown option for \"" + smtStr + "\": \"" + content + "\"");
+	}
+	return options;
+}
+
+bool CHC::abstractAsNondet(FunctionDefinition const& _function)
+{
+	return smtNatspecTags(_function).count(CHCNatspecOption::AbstractFunctionNondet);
 }
 
 SortPointer CHC::sort(FunctionDefinition const& _function)
