@@ -6,25 +6,17 @@ Solidity
     :alt: Solidity logo
     :align: center
 
-Solidity is an object-oriented, high-level language for implementing smart
-contracts. Smart contracts are programs which govern the behaviour of accounts
-within the Ethereum state.
+سالیدیتی یک زبان شیء گرا و سطح بالا برای پیاده سازی قراردادهای هوشمند می باشد. قراردادهای هوشمند، برنامه هایی هستند که رفتار اکانت ها در داخل حالت اتریوم کنترل می کنند.
 
-Solidity is a `curly-bracket language <https://en.wikipedia.org/wiki/List_of_programming_languages_by_type#Curly-bracket_languages>`_.
-It is influenced by C++, Python and JavaScript, and is designed to target the Ethereum Virtual Machine (EVM).
-You can find more details about which languages Solidity has been inspired by in
-the :doc:`language influences <language-influences>` section.
+سالیدیتی یک   `زبان آکلادی (یا curly-bracket language) <https://en.wikipedia.org/wiki/List_of_programming_languages_by_type#Curly-bracket_languages>`_ می باشد. 
+از زبان C++، پایتون وجاوا اسکریپت تأثیر گرفته و برای هدف قراردادن ماشین مجازی اتریوم (یا Ethereum Virtual Machine (EVM)) طراحی شده است.
 
-Solidity is statically typed, supports inheritance, libraries and complex
-user-defined types among other features.
+سالیدیتی از نوع استاتیک می باشد، از ویژگی های ارث بری، کتابخانه هاو انواع پیچیده تعریف شده توسط کاربر پشتیبانی می کند. 
 
-With Solidity you can create contracts for uses such as voting, crowdfunding, blind auctions,
-and multi-signature wallets.
+با سالیدیتی می توانید قراردادهایی برای کاربدهایی از قبیل رأی گیری، سرمایه گذاری جمعی، مزایده و کیف پول با امضای جندگانه استفاده کنید.
 
-When deploying contracts, you should use the latest released
-version of Solidity. This is because breaking changes as well as
-new features and bug fixes are introduced regularly. We currently use
-a 0.x version number `to indicate this fast pace of change <https://semver.org/#spec-item-4>`_.
+هنگام استقرار قرادادها باید از آخرین نسخه منتشر شده سالیدیتی استفاده کنید.
+به این دلیل که شکستن تغییرات همچنین ویژگی های جدید و رفع باگ ها به طور منظم معرفی می شوند. . مادر حال حاظر از  شماره نسخه  0.x `برای نشان دادن این تغییرات استفاده می کنیم <https://semver.org/#spec-item-4>`_.
 
 .. warning::
 
@@ -97,16 +89,16 @@ version stands as a reference.
    community efforts. Please refer to the `translation guide <https://github.com/solidity-docs/translation-guide>`_
    for information on how to contribute to the community translations moving forward.
 
-* `French <https://solidity-fr.readthedocs.io>`_ (in progress)
-* `Italian <https://github.com/damianoazzolini/solidity>`_ (in progress)
-* `Japanese <https://solidity-jp.readthedocs.io>`_
-* `Korean <https://solidity-kr.readthedocs.io>`_ (in progress)
-* `Russian <https://github.com/ethereum/wiki/wiki/%5BRussian%5D-%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%BF%D0%BE-Solidity>`_ (rather outdated)
-* `Simplified Chinese <https://learnblockchain.cn/docs/solidity/>`_ (in progress)
-* `Spanish <https://solidity-es.readthedocs.io>`_
-* `Turkish <https://github.com/denizozzgur/Solidity_TR/blob/master/README.md>`_ (partial)
+* `فرانسوی  <https://solidity-fr.readthedocs.io>`_ (in progress)
+* `ایتالیایی <https://github.com/damianoazzolini/solidity>`_ (in progress)
+* `ژاپنی  <https://solidity-jp.readthedocs.io>`_
+* `کره ای <https://solidity-kr.readthedocs.io>`_ (in progress)
+* `روسی  <https://github.com/ethereum/wiki/wiki/%5BRussian%5D-%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%BF%D0%BE-Solidity>`_ (rather outdated)
+* `چینی  <https://learnblockchain.cn/docs/solidity/>`_ (in progress)
+* `اسپانیایی <https://solidity-es.readthedocs.io>`_
+* `ترکی <https://github.com/denizozzgur/Solidity_TR/blob/master/README.md>`_ (partial)
 
-Contents
+فهرست
 ========
 
 :ref:`Keyword Index <genindex>`, :ref:`Search Page <search>`
